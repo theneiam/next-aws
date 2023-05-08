@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: "us-east-1"
+    AWS_REGION: "us-east-1"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      -
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - npm install
+      - npm run build
+      - npm run export
+  post_build:
+    commands:
+      - echo Build completed on $(date)
+artifacts:
+  files:
+    - "**/*"
